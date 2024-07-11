@@ -1,23 +1,33 @@
+"use client";
+
 import HeadingFlashes from "@/components/custom/headingSection/HeadingFlashes";
 import ProductosCards from "@/components/custom/productosCard/ProductosCards";
 import SliderHero from "@/components/custom/sliderHero/SliderHero";
+import { productos } from "@/data/cardsProducts";
 import Image from "next/image";
+import { useCart } from "./context/cart";
 
 export default function Home() {
+  const { cart, addToCart } = useCart();
   return (
     <>
       <SliderHero />
-
       <section className="mt-20 px-5 lg:px-0 overflow-hidden">
         <HeadingFlashes nombre="Today's" flashes="Flash Sales" />
 
         <div className=" overflow-x-scroll md:overflow-x-hidden">
           <div className="grid w-[70rem] gap-7 md:w-auto grid-cols-4 md:grid-cols-2 lg:grid-cols-4 max-w-[75rem] mx-auto md:gap-8 ">
-            <ProductosCards />
+            {productos.map((product) => (
+              <ProductosCards
+                key={product.id}
+                product={product}
+                cart={cart}
+                addToCart={addToCart}
+              />
+            ))}
           </div>
         </div>
       </section>
-
       <section className="bg-black mt-10 py-8 md:py-16">
         <div className="max-w-[75rem] mx-auto text-white px-4 lg:px-0">
           <p className="text-[#00ff66]">Categories</p>

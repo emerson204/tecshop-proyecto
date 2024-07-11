@@ -28,8 +28,6 @@ export default function SliderHero() {
         pagination={{ clickable: true, dynamicBullets: true }}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         scrollbar={{ draggable: true }}
-        onSwiper={(swiper) => console.log(swiper)}
-        onSlideChange={() => console.log("slide change")}
       >
         {sliderInfo.map(({ id, serie, heading }) => (
           <SwiperSlide key={id} className="bg-black py-[2rem] ">
