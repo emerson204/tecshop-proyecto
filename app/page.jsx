@@ -3,6 +3,7 @@
 import HeadingFlashes from "@/components/custom/headingSection/HeadingFlashes";
 import ProductosCards from "@/components/custom/productosCard/ProductosCards";
 import SliderHero from "@/components/custom/sliderHero/SliderHero";
+import ServicesGroup from "@/components/custom/services/servicesGroup";
 import { productos } from "@/data/cardsProducts";
 import Image from "next/image";
 import { useCart } from "./context/cart";
@@ -55,6 +56,10 @@ export default function Home() {
             </div>
           </div>
         </div>
+      </section>
+
+      <section>
+        <ServicesGroup />
       </section>
     </>
   );
