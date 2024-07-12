@@ -3,6 +3,7 @@ import Image from "next/image";
 
 import SliderDirectiva from "@/components/custom/sliderDirectiva/SliderDirectiva";
 import AcordionAbout from "@/components/custom/acordionAbout/AcordionAbout";
+import Footer from "@/components/custom/footer/Footer";
 
 export default function About() {
   return (
@@ -93,11 +94,13 @@ export default function About() {
         </div>
       </section>
 
-      <section className="max-w-[75rem] mx-auto my-10 px-4 lg:px-0">
+      <section className="max-w-[75rem] mx-auto my-10 md:mb-16 px-4 lg:px-0">
         <h2 className="text-3xl font-bold mb-5">Preguntas Frecuentes</h2>
 
         <AcordionAbout />
       </section>
+
+      <Footer />
     </>
   );
 }

@@ -13,6 +13,14 @@ export const CartProvider = ({ children }) => {
   };
 
   const [cart, setCart] = useState(iniciarCart);
+  const [mostrarAlerta, setMostrarAlerta] = useState(false);
+
+  const totalPagar = () => {
+    return cart.reduce(
+      (total, product) => total + product.cantidad * product.precio,
+      0
+    );
+  };
 
   const addToCart = (product) => {
     const existeProducto = cart.findIndex(
@@ -28,6 +36,14 @@ export const CartProvider = ({ children }) => {
       product.cantidad = 1;
       setCart([...cart, product]);
     }
+
+    // Mostrar la alerta de carrito
+    setMostrarAlerta(true);
+
+    // Limpiar la alerta después de 3 segundos
+    setTimeout(() => {
+      setMostrarAlerta(false);
+    }, 3000);
   };
 
   const eliminarProducto = (id) => {
@@ -79,6 +95,8 @@ export const CartProvider = ({ children }) => {
         aumentarCantidad,
         disminuirCantidad,
         vaciarCarrito,
+        totalPagar,
+        mostrarAlerta,
       }}
     >
       {children}

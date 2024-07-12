@@ -10,18 +10,18 @@ export default function ProductosCards({ product, addToCart }) {
   return (
     <>
       <div key={id} className="flex flex-col w-[17rem] md:w-auto gap-4">
-        <div className="bg-[#f5f5f5] flex flex-col justify-between rounded group h-72 md:h-[68%] md:pt-5">
+        <div className="bg-[#f7f7f7] flex flex-col justify-between rounded group h-72 md:h-[68%] md:pt-5">
           <div className="flex flex-col justify-center h-72 pt-2">
             <Image
               src={`/${id}.png`}
               alt="imagen de camara"
-              width={180}
+              width={160}
               height={110}
-              className="mx-auto md:group-hover:-translate-y-5 md:transition-transform"
+              className="mx-auto md:group-hover:-translate-y-4 md:transition-transform"
             />
           </div>
           <button
-            className="bg-black text-white mt-7 md:mt-3 py-3 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity w-[100%]"
+            className="bg-black text-white  py-4 opacity-100 md:opacity-0 group-hover:opacity-100 transition-opacity w-[100%]"
             onClick={() => addToCart(product)}
           >
             Add To Cart

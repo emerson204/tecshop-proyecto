@@ -2,7 +2,7 @@
 "use client";
 
 import { navegacion } from "@/data/nav";
-import { Menu, ShoppingCart, Search } from "lucide-react";
+import { Menu, ShoppingCart, Search, ShoppingBag } from "lucide-react";
 import {
   HiOutlineXMark,
   HiArchiveBoxXMark,
@@ -11,13 +11,17 @@ import {
 } from "react-icons/hi2";
 import { IoCartOutline } from "react-icons/io5";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useCart } from "@/app/context/cart";
+import { useRouter } from "next/navigation";
+import AlertaCarrito from "../alertCarrito/AlertaCarrito";
 
 export default function Header() {
   const [cartVisible, setCartVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
+
+  const router = useRouter();
 
   const {
     cart,
@@ -25,17 +29,34 @@ export default function Header() {
     aumentarCantidad,
     disminuirCantidad,
     vaciarCarrito,
+    totalPagar,
+    mostrarAlerta,
   } = useCart();
 
-  const totalPagar = () =>
-    cart.reduce(
-      (total, product) => total + product.cantidad * product.precio,
-      0
-    );
+  const cartCantidad = cart.reduce(
+    (total, product) => total + product.cantidad,
+    0
+  );
 
+  useEffect(() => {
+    const handleRouteChange = () => {
+      setCartVisible(false);
+    };
+
+    if (router.events) {
+      router.events.on("routeChangeComplete", handleRouteChange);
+    }
+
+    return () => {
+      if (router.events) {
+        router.events.off("routeChangeComplete", handleRouteChange);
+      }
+    };
+  }, [router.events]);
   return (
     <>
       <header className="p-3 md:py-5 border-b-[1px] border-gray-300">
+        <div>{mostrarAlerta && <AlertaCarrito />}</div>
         <div className="max-w-[85rem] mx-auto flex justify-between items-center gap-3">
           <Link href="/" className="font-bold text-2xl">
             TEC<span className="text-red-500">SHOP</span>
@@ -74,10 +95,18 @@ export default function Header() {
               </span>
             </div>
 
-            <IoCartOutline
-              className="text-3xl cursor-pointer"
-              onClick={() => setCartVisible(!cartVisible)}
-            />
+            <div className="relative">
+              {cartCantidad > 0 && (
+                <span className="absolute bg-black text-white rounded-full px-[.5rem] py-[.2rem] text-[.6rem] -top-3 -right-2 font-bold pointer-events-none">
+                  {cartCantidad}
+                </span>
+              )}
+
+              <IoCartOutline
+                className="text-2xl cursor-pointer"
+                onClick={() => setCartVisible(!cartVisible)}
+              />
+            </div>
             <Menu
               className="md:hidden w-[2rem]"
               onClick={() => setMenuVisible(!menuVisible)}
@@ -158,6 +187,15 @@ export default function Header() {
                         </span>
                       </p>
                     </div>
+
+                    <Link
+                      href="/checkout"
+                      className="flex justify-center gap-2 bg-black text-white py-3 rounded mb-4"
+                      onClick={() => setCartVisible(false)}
+                    >
+                      Comprar
+                      <ShoppingBag />
+                    </Link>
 
                     <button
                       className="bg-red-600 py-3 text-center text-white font-bold rounded  w-[100%]"

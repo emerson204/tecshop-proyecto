@@ -6,6 +6,8 @@ import SliderHero from "@/components/custom/sliderHero/SliderHero";
 import { productos } from "@/data/cardsProducts";
 import Image from "next/image";
 import { useCart } from "./context/cart";
+import Footer from "@/components/custom/footer/Footer";
+import ServicesGroup from "@/components/custom/services/ServicesGroup";
 
 export default function Home() {
   const { cart, addToCart } = useCart();
@@ -56,6 +58,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <section>
+        <ServicesGroup />
+      </section>
+
+      <Footer />
     </>
   );
 }

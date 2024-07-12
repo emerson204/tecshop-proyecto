@@ -1,7 +1,8 @@
 import Header from "@/components/custom/header/Header";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { CartProvider } from "./context/cart";
+import { CartProvider, useCart } from "./context/cart";
+import AlertaCarrito from "@/components/custom/alertCarrito/AlertaCarrito";
 
 const inter = Inter({ subsets: ["latin"] });
 

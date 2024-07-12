@@ -29,7 +29,7 @@ export default function SliderHero() {
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         scrollbar={{ draggable: true }}
       >
-        {sliderInfo.map(({ id, serie, heading }) => (
+        {sliderInfo.map(({ id, serie, heading, src }) => (
           <SwiperSlide key={id} className="bg-black py-[2rem] ">
             <div className="text-white grid grid-cols-2 mx-auto max-w-[75rem]">
               <div className="md:pt-4 lg:pt-16 pl-14 md:pl-20 lg:pl-0">
@@ -54,7 +54,7 @@ export default function SliderHero() {
               </div>
 
               <Image
-                src="/iphone.jpeg"
+                src={`/${src}.jpeg`}
                 alt="imagen de celular"
                 width={541}
                 height={350}

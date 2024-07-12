@@ -7,10 +7,10 @@ export const productos = [
   },
 
   {
-    id: "teclado-led",
-    nombre: "AK-900 Wired Keyboard",
-    precio: 960,
-    precioOriginal: 1160,
+    id: "mando_rojo",
+    nombre: "HAVIT HV-G92 Gamepad",
+    precio: 150,
+    precioOriginal: 130,
   },
 
   {
@@ -21,13 +21,6 @@ export const productos = [
   },
 
   {
-    id: "cooler",
-    nombre: "RGB liquid CPU Cooler",
-    precio: 160,
-    precioOriginal: 180,
-  },
-
-  {
     id: "laptop",
     nombre: "Laptop Asus 15' ",
     precio: 700,
@@ -35,16 +28,23 @@ export const productos = [
   },
 
   {
+    id: "cooler",
+    nombre: "RGB liquid CPU Cooler",
+    precio: 160,
+    precioOriginal: 180,
+  },
+
+  {
+    id: "teclado-led",
+    nombre: "AK-900 Wired Keyboard",
+    precio: 960,
+    precioOriginal: 1160,
+  },
+
+  {
     id: "camara",
     nombre: "CANON EOS DSLR Camera",
     precio: 360,
     precioOriginal: 410,
-  },
-
-  {
-    id: "mando_rojo",
-    nombre: "HAVIT HV-G92 Gamepad",
-    precio: 150,
-    precioOriginal: 130,
   },
 ];
