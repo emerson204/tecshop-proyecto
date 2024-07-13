@@ -32,9 +32,10 @@ export default function Pay() {
 
   return (
     <>
-      <section className="py-8 mb-7">
-        <div className="max-w-[75rem] mx-auto grid grid-cols-2 gap-[12rem]">
+      <section className="py-8 mb-7 px-7">
+        <div className="max-w-[75rem] mx-auto grid lg:grid-cols-2 gap-[4rem] lg:gap-[12rem]">
           <form action="post" onSubmit={handleSubmit(registerData)}>
+            <h1 className="text-4xl font-medium mb-8">Billing Details</h1>
             <div className="mb-7">
               <label
                 htmlFor="firstName"

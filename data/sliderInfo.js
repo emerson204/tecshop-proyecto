@@ -8,14 +8,14 @@ export const sliderInfo = [
 
   {
     id: 2,
-    serie: "Iphone X 65 GB Premium",
+    serie: "Iphone 12 65 GB Premium",
     heading: "Discover savings up to 50%",
     src: "iphone",
   },
 
   {
     id: 3,
-    serie: "Iphone 15 128 GB Premium",
+    serie: "Iphone 12 Pro Max 128 GB",
     heading: "Up to 10% off Voucher Lets Go",
     src: "iphone",
   },

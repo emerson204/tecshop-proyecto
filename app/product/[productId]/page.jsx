@@ -50,7 +50,7 @@ export default function ProductoDetails({ params }) {
           <div className="flex justify-between">
             <button
               className="w-[50%] md:w-48 rounded p-3 bg-[#db4444] text-white "
-              onClick={addToCart}
+              onClick={() => addToCart(producto)}
             >
               Agregar Carrito
             </button>

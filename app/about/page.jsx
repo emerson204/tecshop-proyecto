@@ -52,11 +52,7 @@ export default function About() {
       </section>
 
       <section className="my-16  md:my-24 px-6">
-        <div
-          className="max-w-[75rem] mx-auto grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-8"
-          data-aos="fade-up"
-          data-aos-anchor-placement="center-bottom"
-        >
+        <div className="max-w-[75rem] mx-auto grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-8">
           <AboutRange
             src="/about-icon-money.png"
             kills="10.5K"
