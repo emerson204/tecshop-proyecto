@@ -1,3 +1,5 @@
+"use client";
+
 import AboutRange from "@/components/custom/aboutRange/AboutRange";
 import Image from "next/image";
 
@@ -5,12 +7,19 @@ import SliderDirectiva from "@/components/custom/sliderDirectiva/SliderDirectiva
 import AcordionAbout from "@/components/custom/acordionAbout/AcordionAbout";
 import Footer from "@/components/custom/footer/Footer";
 
+import Aos from "aos";
+import { useEffect } from "react";
+
 export default function About() {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <>
       <section className="mt-6 px-6 md:px-0">
-        <div className="flex justify-between items-center">
-          <div className="md:ml-20 ">
+        <div className="flex justify-between items-center overflow-x-hidden">
+          <div className="md:ml-20" data-aos="fade-right">
             <h2 className="font-bold text-5xl tracking-wide my-6 md:my-10">
               Our Story
             </h2>
@@ -30,7 +39,7 @@ export default function About() {
             </div>
           </div>
 
-          <div className=" md:block hidden">
+          <div className=" md:block hidden" data-aos="fade-left">
             <Image
               src="/about-compras.png"
               alt="Imagen de dos personas con bolsas de compras"
@@ -43,7 +52,11 @@ export default function About() {
       </section>
 
       <section className="my-16  md:my-24 px-6">
-        <div className="max-w-[75rem] mx-auto grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-8">
+        <div
+          className="max-w-[75rem] mx-auto grid gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-4 lg:gap-8"
+          data-aos="fade-up"
+          data-aos-anchor-placement="center-bottom"
+        >
           <AboutRange
             src="/about-icon-money.png"
             kills="10.5K"
@@ -76,7 +89,7 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-6">
             <SliderDirectiva />
 
-            <div className="md:block hidden">
+            <div className="md:block hidden" data-aos="fade-left">
               <h3 className="font-bold text-3xl mb-4 ">Directive</h3>
               <p className="leading-7">
                 The Board of Directors is a fundamental component of any
@@ -99,8 +112,6 @@ export default function About() {
 
         <AcordionAbout />
       </section>
-
-      <Footer />
     </>
   );
 }

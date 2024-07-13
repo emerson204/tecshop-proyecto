@@ -10,7 +10,7 @@ const Footer = () => {
           <p className="text-2xl">Subscribe</p>
           <div className="flex flex-col gap-4">
             <p className="mb-2">Get 10% off your first order</p>
-            <div className="border-2 p-3 flex justify-between rounded w-[50%] md:w-[45%] lg:w-[100%]">
+            <div className="border-2 p-3 flex justify-between rounded w-[100%] md:w-[45%] lg:w-[100%]">
               <input
                 className="bg-black text-white focus:outline-none lg:w-[85%]"
                 type="email"

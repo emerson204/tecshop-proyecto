@@ -4,7 +4,11 @@ import Services from "./Services";
 export default function ServicesGroup() {
   return (
     <>
-      <div className="flex flex-col items-center gap-10 py-16 md:flex-row md:justify-around md:px-10">
+      <div
+        className="flex flex-col items-center gap-10 py-16 md:flex-row md:justify-around md:px-10"
+        data-aos="fade-up"
+        data-aos-anchor-placement="bottom-bottom"
+      >
         <Services
           image="/services/transport.png"
           title="FREE AND FAST DELIVERY"

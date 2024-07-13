@@ -1,40 +1,37 @@
 "use client";
 
 import HeadingFlashes from "@/components/custom/headingSection/HeadingFlashes";
-import ProductosCards from "@/components/custom/productosCard/ProductosCards";
 import SliderHero from "@/components/custom/sliderHero/SliderHero";
 import { productos } from "@/data/cardsProducts";
 import Image from "next/image";
-import { useCart } from "./context/cart";
-import Footer from "@/components/custom/footer/Footer";
 import ServicesGroup from "@/components/custom/services/ServicesGroup";
+import SeparatorProducts from "@/components/custom/productsSlice/SeparatorProducts";
+import Aos from "aos";
+import { useEffect } from "react";
 
 export default function Home() {
-  const { cart, addToCart } = useCart();
+  const primeroProductos = productos.slice(0, 8);
+  const segundoProductos = productos.slice(9, 17);
+
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
   return (
     <>
       <SliderHero />
       <section className="mt-20 px-5 lg:px-0 overflow-hidden">
         <HeadingFlashes nombre="Today's" flashes="Flash Sales" />
 
-        <div className=" overflow-x-scroll md:overflow-x-hidden">
-          <div className="grid w-[70rem] gap-7 md:w-auto grid-cols-4 md:grid-cols-2 lg:grid-cols-4 max-w-[75rem] mx-auto md:gap-8 ">
-            {productos.map((product) => (
-              <ProductosCards
-                key={product.id}
-                product={product}
-                cart={cart}
-                addToCart={addToCart}
-              />
-            ))}
-          </div>
-        </div>
+        <SeparatorProducts separador={primeroProductos} />
       </section>
-      <section className="bg-black mt-10 py-8 md:py-16">
+      <section className="bg-black mt-10 py-8 md:mb-18 md:py-16">
         <div className="max-w-[75rem] mx-auto text-white px-4 lg:px-0">
-          <p className="text-[#00ff66]">Categories</p>
-          <div className="grid md:grid-cols-2 items-center ">
-            <div className="mb-6 md:mb-0">
+          <p className="text-[#00ff66]" data-aos="fade-right">
+            Categories
+          </p>
+          <div className="grid md:grid-cols-2 items-center">
+            <div className="mb-6 md:mb-0" data-aos="fade-right">
               <h2 className="text-3xl md:text-5xl font-bold max-w-[80%] my-4 md:my-7">
                 Enhance Your Music Experience
               </h2>
@@ -46,7 +43,7 @@ export default function Home() {
                 Buy Now
               </button>
             </div>
-            <div className="mx-auto">
+            <div className="mx-auto" data-aos="zoom-in">
               <Image
                 src="/buffer.png"
                 alt="buffer"
@@ -59,11 +56,15 @@ export default function Home() {
         </div>
       </section>
 
-      <section>
-        <ServicesGroup />
+      <section className="px-5 lg:px-0 overflow-hidden mt-20 ">
+        <HeadingFlashes nombre="Our Products" flashes="Explore Our Products" />
+
+        <SeparatorProducts separador={segundoProductos} />
       </section>
 
-      <Footer />
+      <section className="my-10">
+        <ServicesGroup />
+      </section>
     </>
   );
 }

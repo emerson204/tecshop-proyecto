@@ -2,7 +2,7 @@
 "use client";
 
 import { navegacion } from "@/data/nav";
-import { Menu, ShoppingCart, Search, ShoppingBag } from "lucide-react";
+import { Menu, ShoppingBag } from "lucide-react";
 import {
   HiOutlineXMark,
   HiArchiveBoxXMark,
@@ -16,11 +16,13 @@ import Image from "next/image";
 import { useCart } from "@/app/context/cart";
 import { useRouter } from "next/navigation";
 import AlertaCarrito from "../alertCarrito/AlertaCarrito";
+import { useUser } from "@clerk/clerk-react";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   const [cartVisible, setCartVisible] = useState(false);
   const [menuVisible, setMenuVisible] = useState(false);
-
+  const user = useUser();
   const router = useRouter();
 
   const {
@@ -37,7 +39,6 @@ export default function Header() {
     (total, product) => total + product.cantidad,
     0
   );
-
   useEffect(() => {
     const handleRouteChange = () => {
       setCartVisible(false);
@@ -53,11 +54,16 @@ export default function Header() {
       }
     };
   }, [router.events]);
+
+  const handleLogout = async () => {
+    await user.signOut();
+    router.reload(); // Recarga la página para actualizar el estado de autenticación
+  };
   return (
     <>
-      <header className="p-3 md:py-5 border-b-[1px] border-gray-300">
+      <header className="p-3 md:py-4 border-b-[1px] border-gray-300 sticky top-0 bg-white z-30">
         <div>{mostrarAlerta && <AlertaCarrito />}</div>
-        <div className="max-w-[85rem] mx-auto flex justify-between items-center gap-3">
+        <div className="max-w-[75rem] mx-auto flex justify-between items-center gap-3">
           <Link href="/" className="font-bold text-2xl">
             TEC<span className="text-red-500">SHOP</span>
           </Link>
@@ -83,17 +89,25 @@ export default function Header() {
             </div>
           </nav>
 
-          <div className="flex gap-2 items-center md:gap-5">
-            <div className="flex relative w-[100%]">
-              <input
-                type="text"
-                className="rounded outline-none px-2 pr-5 py-[7px] md:pr-16 text-xs w-[100%] bg-gray-100 placeholder:text-slate-600"
-                placeholder="What are you looking for?"
-              />
-              <span className="absolute right-2 top-[2px]">
-                <Search className="w-[1rem]" />
-              </span>
-            </div>
+          <div className="flex gap-2 items-center md:gap-4">
+            {user && (
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            )}
+
+            <Link
+              href="/sign-in"
+              className="bg-red-500 text-white text-xs md:text-sm py-[.3rem] px-[.4rem] md:py-[.4rem] md:px-4 rounded "
+            >
+              Sing In
+            </Link>
+            <Link
+              href="/sign-up"
+              className="bg-red-500 text-white text-xs md:text-sm py-[.3rem] px-[.4rem] md:py-[.4rem] md:px-4 rounded "
+            >
+              Sing Up
+            </Link>
 
             <div className="relative">
               {cartCantidad > 0 && (
@@ -127,7 +141,7 @@ export default function Header() {
 
                 {cart.length === 0 ? (
                   <p className="bg-black text-white py-4 text-center mt-10 rounded">
-                    El carrito esta vacio
+                    The cart is empty
                   </p>
                 ) : (
                   <div>
@@ -181,7 +195,7 @@ export default function Header() {
                     ))}
                     <div>
                       <p className="my-8 font-medium flex justify-between text-[1rem]">
-                        Total a pagar :
+                        Total to pay :
                         <span className="font-bold text-[1rem]">
                           S/{totalPagar()}
                         </span>
@@ -193,7 +207,7 @@ export default function Header() {
                       className="flex justify-center gap-2 bg-black text-white py-3 rounded mb-4"
                       onClick={() => setCartVisible(false)}
                     >
-                      Comprar
+                      Buy now
                       <ShoppingBag />
                     </Link>
 
@@ -201,7 +215,7 @@ export default function Header() {
                       className="bg-red-600 py-3 text-center text-white font-bold rounded  w-[100%]"
                       onClick={vaciarCarrito}
                     >
-                      Vaciar Carrito
+                      Empty Cart
                     </button>
                   </div>
                 )}

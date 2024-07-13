@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/carousel";
 export default function SliderDirectiva() {
   return (
-    <Carousel className="mx-auto max-w-[70%]">
+    <Carousel className="mx-auto max-w-[70%]" data-aos="zoom-in">
       <CarouselContent>
         <CarouselItem>
           <AboutDirectiva

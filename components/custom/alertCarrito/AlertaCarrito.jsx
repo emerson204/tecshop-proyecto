@@ -4,7 +4,7 @@ export default function AlertaCarrito() {
   return (
     <Alert
       variant="carritoNot"
-      className="fixed bg-white right-4 bottom-5 z-20 shadow"
+      className="fixed bg-white right-4 bottom-5 z-20 shadow w-[80%] md:w-[40%] lg:w-auto"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

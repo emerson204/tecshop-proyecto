@@ -10,14 +10,14 @@ export default function Checkout() {
   const { cart, totalPagar, eliminarProducto } = useCart();
 
   return (
-    <div className="max-w-[85rem] mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Checkout</h1>
+    <section className="max-w-[85rem] mx-auto p-6 mt-6 mb-10">
+      <h1 className="text-3xl font-bold mb-6">Checkout</h1>
       <div className="flex flex-col lg:flex-row gap-6">
         {/* Productos */}
         <div className="flex-1 bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-8">Tus Productos</h2>
+          <h2 className="text-xl font-semibold mb-8">Your Products</h2>
           {cart.length === 0 ? (
-            <p>Tu carrito está vacío</p>
+            <p>Your cart is empty</p>
           ) : (
             cart.map((product) => (
               <div
@@ -34,10 +34,10 @@ export default function Checkout() {
                   <div>
                     <h3 className="text-xl font-semibold">{product.nombre}</h3>
                     <p className="my-2 ">
-                      Cantidad: <span>{product.cantidad}</span>
+                      Amount: <span>{product.cantidad}</span>
                     </p>
                     <p>
-                      Precio: S/<span>{product.precio}</span>
+                      Price: S/<span>{product.precio}</span>
                     </p>
                   </div>
                 </div>
@@ -52,24 +52,24 @@ export default function Checkout() {
 
         {/* Resumen */}
         <div className="w-full lg:w-1/3 bg-white p-4 rounded shadow">
-          <h2 className="text-xl font-semibold mb-4">Resumen de Compra</h2>
+          <h2 className="text-xl font-semibold mb-4">Purchase Summary</h2>
           <p className="flex justify-between mb-2">
-            Total de Productos:{" "}
+            Total Products:
             <span>
               {cart.reduce((total, product) => total + product.cantidad, 0)}
             </span>
           </p>
           <p className="flex justify-between mb-2">
-            Total a Pagar: <span>S/{totalPagar()}</span>
+            Total to pay: <span>S/{totalPagar()}</span>
           </p>
           <Link
-            href="/payment"
-            className="block bg-black text-white text-center py-2 rounded mt-4"
+            href="/pay"
+            className="block bg-black text-white text-center py-3 rounded mt-4"
           >
-            Proceder al Pago
+            Proceed to Payment
           </Link>
         </div>
       </div>
-    </div>
+    </section>
   );
 }
