@@ -5,7 +5,7 @@ import React from "react";
 export default function AuthLayout({ children }) {
   return (
     <>
-      <div className="grid grid-cols-[1fr_1fr] mt-10 mb-28">
+      <div className="grid md:grid-cols-[1fr_1fr] md:mt-10 mb-28">
         <div>
           <div className="w-[100%]">
             <Image
